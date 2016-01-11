@@ -38,14 +38,15 @@ void test_legacy_annoy() {
 }
 
 void test_compressed_array() {
-    CompressedVector<float_t> *v1 = convert(elem[3], 3);
-    CompressedVector<float_t> *v2 = convert(elem[4], 3);
+    CompressedVector<int32_t, float_t> v1;
+    CompressedVector<int32_t, float_t> v2;
 
-    float_t s = scalar(*v1, *v2);
+    convert(elem[3], 3, v1);
+    convert(elem[4], 3, v2);
+
+    float_t s = scalar(v1, v2);
     printf("Scalar of elements %d and %d is %.2f\n", 3, 4, s);
 
-    float_t n = norm(*v2);
+    float_t n = norm(v2);
     printf("Norm of element %d is %.2f\n", 4, n);
-
-    delete v1, v2;
 }
