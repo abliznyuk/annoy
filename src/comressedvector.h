@@ -6,7 +6,7 @@
 #include <bitset>
 
 #ifndef MASK_SIZE
-#define MASK_SIZE 3
+#define MASK_SIZE 512
 #endif
 
 using std::bitset;
@@ -54,8 +54,8 @@ template<typename S, typename T>
 inline void convert(const T* data, S size, CompressedVector<S, T>& vector) {
     vector.resize(true_size(data, size));
 
-    uint16_t index = 0;
-    for (uint16_t i = 0; i < size; i++) {
+    S index = 0;
+    for (S i = 0; i < size; i++) {
         if (data[i] != 0) {
             vector.mask.set(i);
             vector.v[index++] = data[i];
